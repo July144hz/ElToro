@@ -47,9 +47,23 @@ def tarjetas():
     def verificar(var1,var2):
         fcursor.execute("SELECT * FROM tarjetas WHERE usuario = '"+var1+"' and password = '"+var2+"'")
         if fcursor.fetchall():
+            fondo = "#61E9A3"
             messagebox.showwarning(message="Has logeado con exito", title="SI")
             l1.destroy(),l2.destroy(),l3.destroy(),btn1.destroy(),e1.destroy(),e2.destroy()
-            
+            root.configure(bg=fondo)
+            l4=Label(pady=50,bg=fondo)
+            l4.pack()
+            l5=Label(bg=fondo,font=("bahnschrift",20),text="Que desea hacer?")
+            l5.pack()
+            btn2=Button(text="INGRESAR MONTO",font=("bahnschrift",20),bg="#029D4D",activebackground="#029D4D")
+            btn2.pack()
+            btn3=Button(text="RETIRAR MONTO",font=("bahnschrift",20),bg="#029D4D",activebackground="#029D4D",padx=12)
+            btn3.pack()
+            btn4=Button(text="SALIR",font=("bahnschrift",20),bg="#E33F2C",activebackground="#E33F2C",padx=75)
+            btn4.pack()
+
+
+
         else:
             messagebox.showerror(message="Error, Intente denuevo", title="NO")
         pass
