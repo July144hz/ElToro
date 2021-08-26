@@ -56,4 +56,9 @@ def tarjetas():
 
     pass
 
+def hola():
+    print("hola")
+
+
+
 tarjetas()
