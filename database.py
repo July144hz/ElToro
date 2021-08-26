@@ -56,4 +56,7 @@ def tarjetas():
 
     pass
 
+    def ols():
+        print("Nashe")
+
 tarjetas()
