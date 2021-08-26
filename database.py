@@ -57,6 +57,6 @@ def tarjetas():
     pass
 #HOLA
 ##ASHE
-##asdas
+##asdasasd
 
 tarjetas()
