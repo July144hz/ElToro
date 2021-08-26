@@ -49,13 +49,13 @@ def tarjetas():
         if fcursor.fetchall():
             messagebox.showwarning(message="Has logeado con exito", title="SI")
             l1.destroy(),l2.destroy(),l3.destroy(),btn1.destroy(),e1.destroy(),e2.destroy()
+            
         else:
             messagebox.showerror(message="Error, Intente denuevo", title="NO")
         pass
 
     main()
-    pass
 
-print("asd")
+    pass
 
 tarjetas()
