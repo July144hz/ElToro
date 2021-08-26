@@ -56,8 +56,4 @@ def tarjetas():
 
     pass
 
-    def asd():
-        print("Ashe")
-        print("asd")
-
 tarjetas()
