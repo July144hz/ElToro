@@ -63,7 +63,7 @@ def tarjetas():
             l5.pack()
             btn2=Button(text="INGRESAR MONTO",font=("bahnschrift",20),bg="#029D4D",activebackground="#029D4D",command=lambda:(imonto(),btn2.destroy(),btn3.destroy(),btn4.destroy()))
             btn2.pack()
-            btn3=Button(text="RETIRAR MONTO",font=("bahnschrift",20),bg="#029D4D",activebackground="#029D4D",padx=12)
+            btn3=Button(text="RETIRAR MONTO",font=("bahnschrift",20),bg="#029D4D",activebackground="#029D4D",padx=12, command = lambda :(l5.destroy(), btn2.destroy(), btn3.destroy(), btn4.destroy(), rmonto()))
             btn3.pack()
             btn4=Button(text="SALIR",font=("bahnschrift",20),bg="#E33F2C",activebackground="#E33F2C",padx=75)
             btn4.pack()
@@ -83,6 +83,15 @@ def tarjetas():
                 fcursor.execute("UPDATE tarjetas SET saldo = (saldo+'"+monto.get()+"') WHERE usuario = '"+var1+"' and password = '"+var2+"'")
                 saldo= saldo + int(monto.get())
                 print(saldo)
+            def rmonto():
+                l6 = Label(text = "Que cantidad desea retirar?")
+                l6.pack()
+                monto = StringVar()
+                e4 = Entry(textvariable=monto, justify=CENTER)
+                e4.bind('<Return>', fcursor.execute("UPDATE tarjetas SET saldo = (saldo + '"+monto.get()+"') WHERE usuario = '"+var1+"' and password = '"+var2+"'"))
+                e4.pack()
+                btn6 = Button(text="RETIRAR", font=("bahnschrift",20),bg="#029D4D",activebackground="#029D4D")
+                pass
 
         else:
             messagebox.showerror(message="Error, Intente denuevo", title="NO")
