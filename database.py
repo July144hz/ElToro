@@ -47,12 +47,6 @@ def tarjetas():
     def verificar(var1,var2):
         fcursor.execute("SELECT * FROM tarjetas WHERE usuario = '"+var1+"' and password = '"+var2+"'")
         if fcursor.fetchall():
-            global saldo
-            fcursor.execute("SELECT saldo FROM tarjetas WHERE usuario = '"+var1+"' and password = '"+var2+"'")
-            for i in fcursor:
-                #print(i)
-                saldo = i[0]
-            #print(saldo, type(saldo))
             fondo = "#61E9A3"
             messagebox.showwarning(message="Has logeado con exito", title="SI")
             l1.destroy(),l2.destroy(),l3.destroy(),btn1.destroy(),e1.destroy(),e2.destroy()
@@ -61,29 +55,13 @@ def tarjetas():
             l4.pack()
             l5=Label(bg=fondo,font=("bahnschrift",20),text="Que desea hacer?")
             l5.pack()
-            btn2=Button(text="INGRESAR MONTO",font=("bahnschrift",20),bg="#029D4D",activebackground="#029D4D",command=lambda:(imonto(),btn2.destroy(),btn3.destroy(),btn4.destroy()))
+            btn2=Button(text="INGRESAR MONTO",font=("bahnschrift",20),bg="#029D4D",activebackground="#029D4D")
             btn2.pack()
             btn3=Button(text="RETIRAR MONTO",font=("bahnschrift",20),bg="#029D4D",activebackground="#029D4D",padx=12, command = lambda :(l5.destroy(), btn2.destroy(), btn3.destroy(), btn4.destroy(), rmonto()))
             btn3.pack()
             btn4=Button(text="SALIR",font=("bahnschrift",20),bg="#E33F2C",activebackground="#E33F2C",padx=75)
             btn4.pack()
 
-            def imonto():
-                l5.config(text="Que cantidad desea ingresar?")
-                monto= StringVar()
-                e3=Entry(textvariable=monto,justify=CENTER,font=('calibri',20))
-                e3.bind('<Return>', lambda x:ingreso(monto))
-                e3.pack()
-                btn5=Button(text="INGRESAR",font=("bahnschrift",20),bg="#029D4D",activebackground="#029D4D",command=lambda:(ingreso(monto)))
-                btn5.pack()
-                pass
-
-            def ingreso(monto):
-                global saldo
-                fcursor.execute("UPDATE tarjetas SET saldo = (saldo+'"+monto.get()+"') WHERE usuario = '"+var1+"' and password = '"+var2+"'")
-                saldo= saldo + int(monto.get())
-                print(saldo)
-                
             def rmonto():
                 l6 = Label(text = "Que cantidad desea retirar?")
                 l6.pack()
@@ -92,7 +70,6 @@ def tarjetas():
                 e4.bind('<Return>', fcursor.execute("UPDATE tarjetas SET saldo = (saldo + '"+monto.get()+"') WHERE usuario = '"+var1+"' and password = '"+var2+"'"))
                 e4.pack()
                 btn6 = Button(text="RETIRAR", font=("bahnschrift",20),bg="#029D4D",activebackground="#029D4D")
-                btn6.pack()
                 pass
 
         else:
