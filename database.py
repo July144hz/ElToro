@@ -34,6 +34,7 @@ def tarjetas():
         l3.pack(pady=5)
         passEntry = StringVar()
         e2=Entry(textvariable=passEntry,justify=CENTER,font=('calibri',20),show='*')
+        e2.bind('<Return>',lambda x:(verificar(userEntry.get(),passEntry.get())))
         e2.pack(pady=5)
 
         fotoLogin=ImageTk.PhotoImage(Image.open('resources/login4.png'))
