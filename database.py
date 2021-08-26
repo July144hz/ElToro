@@ -54,7 +54,8 @@ def tarjetas():
         pass
 
     main()
-
     pass
+
+print("asd")
 
 tarjetas()
