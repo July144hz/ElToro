@@ -55,8 +55,6 @@ def tarjetas():
     main()
 
     pass
-#HOLA
-##ASHE
-##asdasasd
+
 
 tarjetas()
