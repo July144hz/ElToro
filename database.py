@@ -56,9 +56,14 @@ def tarjetas():
 
     pass
 
+<<<<<<< HEAD
 def hola():
     print("hola")
 
 
+=======
+    def ols():
+        print("Nashe")
+>>>>>>> 16625c9f8124f5e8263037651aad23950b7b03f3
 
 tarjetas()
