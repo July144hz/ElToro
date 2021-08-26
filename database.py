@@ -83,6 +83,7 @@ def tarjetas():
                 fcursor.execute("UPDATE tarjetas SET saldo = (saldo+'"+monto.get()+"') WHERE usuario = '"+var1+"' and password = '"+var2+"'")
                 saldo= saldo + int(monto.get())
                 print(saldo)
+                
             def rmonto():
                 l6 = Label(text = "Que cantidad desea retirar?")
                 l6.pack()
@@ -91,6 +92,7 @@ def tarjetas():
                 e4.bind('<Return>', fcursor.execute("UPDATE tarjetas SET saldo = (saldo + '"+monto.get()+"') WHERE usuario = '"+var1+"' and password = '"+var2+"'"))
                 e4.pack()
                 btn6 = Button(text="RETIRAR", font=("bahnschrift",20),bg="#029D4D",activebackground="#029D4D")
+                btn6.pack()
                 pass
 
         else:
