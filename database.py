@@ -5,6 +5,8 @@ from PIL import ImageTk,Image
 from tkinter import messagebox
 
 def tarjetas():
+    global root
+    root = Tk()
     bd= pymysql.connect(
         host='localhost',
         user='root',
@@ -13,7 +15,7 @@ def tarjetas():
     fcursor = bd.cursor()
     def main():
         global l1,l2,l3,e1,e2,btn1,fotoLogin,root
-        root = Tk()
+        
         fondo='#71b4fd'
         root.config(bg=fondo)
         root.title("DataBase")
@@ -54,7 +56,9 @@ def tarjetas():
                 saldo = i[0]
                 #print(saldo, type(saldo))
             fondo = "#61E9A3"
+            
             messagebox.showinfo(message="Has logeado con exito", title="BANCO BILBAO VIZCAYA")
+            
             l1.destroy(),l2.destroy(),l3.destroy(),btn1.destroy(),e1.destroy(),e2.destroy()
             root.configure(bg=fondo)
             l4=Label(pady=50,bg=fondo)
@@ -65,8 +69,11 @@ def tarjetas():
             btn2.pack()
             btn3=Button(text="RETIRAR MONTO",font=("bahnschrift",20),bg="#029D4D",activebackground="#029D4D",padx=12, command = lambda :(btn2.destroy(), btn3.destroy(), btn4.destroy(), rmonto()))
             btn3.pack()
-            btn4=Button(text="SALIR",font=("bahnschrift",20),bg="#E33F2C",activebackground="#E33F2C",padx=75)
+            btn4=Button(text="SALIR",font=("bahnschrift",20),bg="#E33F2C",activebackground="#E33F2C",padx=75,command=lambda:(volverinicio()))
             btn4.pack()
+            def volverinicio():
+                btn4.destroy(),btn3.destroy(),btn2.destroy(),l5.destroy(),l4.destroy()
+                main()
             pass
 
             def imonto():
@@ -75,11 +82,11 @@ def tarjetas():
                 e3=Entry(textvariable=monto,justify=CENTER,font=('calibri',20))
                 e3.bind('<Return>', lambda x:ingreso(monto))
                 e3.pack()
-                btn5=Button(text="INGRESAR",font=("bahnschrift",20),bg="#029D4D",activebackground="#029D4D",command=lambda:(ingreso(monto)))
+                btn5=Button(text="INGRESAR",font=("bahnschrift",20),bg="#029D4D",activebackground="#029D4D",command=lambda:(l8.configure(text=f"Saldo actual:{saldo+20}"),ingreso(monto)))
                 btn5.pack()
-                btn7 = Button(text="SALIR",font=("bahnschrift",20),bg="#E33F2C",activebackground="#E33F2C")
+                btn7 = Button(text="SALIR",font=("bahnschrift",20),bg="#E33F2C",activebackground="#E33F2C",command=lambda:())
                 btn7.pack()
-                l8 = Label(text=f"Saldo actual:{saldo}", font=("consola",20),bg=fondo,activebackground=fondo)
+                l8 = Label(text=f"Saldo actual:{saldo}",font=("consola",20),bg=fondo,activebackground=fondo)
                 l8.pack()
                 pass
 
@@ -87,7 +94,7 @@ def tarjetas():
                 global saldo
                 fcursor.execute("UPDATE tarjetas SET saldo = (saldo+'"+monto.get()+"') WHERE usuario = '"+var1+"' and password = '"+var2+"'")
                 try:
-                    saldo= saldo + int(monto.get())
+                    saldo= saldo + float(monto.get())
                 except:
                     messagebox.showerror(message = "Ha ocurrido un error, intente ingresar otro valor.", title="BANCO BILBAO VIZCAYA")
                 pass
