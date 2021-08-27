@@ -116,7 +116,7 @@ def tarjetas():
                 pass
 
         else:
-            messagebox.showerror(message="Error, Intente denuevo", title="NO")
+            messagebox.showerror(message="Error, Intente denuevo", title="BANCO BILBAO VIZCAYA")
         pass
 
     main()
