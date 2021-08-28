@@ -75,7 +75,7 @@ def tarjetas():
             def volverinicio():
                 btn4.destroy(),btn3.destroy(),btn2.destroy(),l5.destroy(),l4.destroy()
                 main()
-            pass
+
             principal()
 
             def imonto():
@@ -92,7 +92,6 @@ def tarjetas():
                 l8.pack()
                 pass
             
-
             def ingreso(monto):
                 global saldo
                 fcursor.execute("UPDATE tarjetas SET saldo = (saldo+'"+monto.get()+"') WHERE usuario = '"+var1+"' and password = '"+var2+"'")
@@ -134,5 +133,4 @@ def tarjetas():
     pass
 
 tarjetas()
-
-
+##asd
