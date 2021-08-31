@@ -47,6 +47,13 @@ def tarjetas():
         pass
 
     def verificar(var1,var2):
+
+        salir = ImageTk.PhotoImage(Image.open('resources/salir.png'))
+        salir2 = ImageTk.PhotoImage(Image.open('resources/salir2.png'))
+        ingresar = ImageTk.PhotoImage(Image.open('resources/ingresar.png'))
+        retirar = ImageTk.PhotoImage(Image.open('resources/retirar.png'))
+
+
         fcursor.execute("SELECT * FROM tarjetas WHERE usuario = '"+var1+"' and password = '"+var2+"'")
         if fcursor.fetchall():
             global saldo
@@ -58,22 +65,24 @@ def tarjetas():
             fondo = "#7fffd4"
             
             messagebox.showinfo(message="Has iniciado sesion exitosamente", title="BANCO BILBAO VIZCAYA")
-            l4=Label(pady=50,bg=fondo)
+            l4=Label(pady=35,bg=fondo)
             l4.pack()
             def principal():
-                global btn2, btn1, btn3, btn4, l5, l4
+                global btn2, btn1, btn3, btn4, l5, l4,btnsalir
                 l1.destroy(),l2.destroy(),l3.destroy(),btn1.destroy(),e1.destroy(),e2.destroy()
                 root.configure(bg=fondo)
                 l5=Label(bg=fondo,font=("bahnschrift",20),text="Que desea hacer?")
                 l5.pack()
-                btn2=Button(text="INGRESAR MONTO",font=("bahnschrift",20),bg="#029D4D",activebackground="#029D4D",command=lambda:(imonto(),btn2.destroy(),btn3.destroy(),btn4.destroy()))
+                btn2=Button(text="INGRESAR MONTO",image=ingresar,font=("bahnschrift",20),bg=fondo,activebackground=fondo,padx=75,borderwidth=0,highlightthickness=0,highlightcolor=fondo,command=lambda:(imonto(),btn2.destroy(),btn3.destroy(),btn4.destroy()))
                 btn2.pack(pady=2)
-                btn3=Button(text="RETIRAR MONTO",font=("bahnschrift",20),bg="#029D4D",activebackground="#029D4D",padx=12, command = lambda :(btn2.destroy(), btn3.destroy(), btn4.destroy(), rmonto()))
+                btn3=Button(text="RETIRAR MONTO",image=retirar,font=("bahnschrift",20),bg=fondo,activebackground=fondo,padx=75,borderwidth=0,highlightthickness=0,highlightcolor=fondo, command = lambda :(btn2.destroy(), btn3.destroy(), btn4.destroy(), rmonto()))
                 btn3.pack(pady=2)
-                btn4=Button(text="SALIR",font=("bahnschrift",20),bg="#E33F2C",activebackground="#E33F2C",padx=75,command=lambda:(volverinicio()))
+                btn4=Button(text="SALIR",image=salir,font=("bahnschrift",20),bg=fondo,activebackground=fondo,padx=75,borderwidth=0,highlightthickness=0,highlightcolor=fondo,command=lambda:(volverinicio()))
                 btn4.pack(pady=2)
+                btnsalir=Button(image=salir2,bg=fondo,activebackground=fondo,padx=75,borderwidth=0,highlightthickness=0,highlightcolor=fondo,command=lambda:(volverinicio()))
+                btnsalir.place(x=15,y=15)
             def volverinicio():
-                btn4.destroy(),btn3.destroy(),btn2.destroy(),l5.destroy(),l4.destroy()
+                btn4.destroy(),btn3.destroy(),btn2.destroy(),l5.destroy(),l4.destroy(),btnsalir.destroy()
                 main()
 
             principal()
