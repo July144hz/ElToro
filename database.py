@@ -82,7 +82,7 @@ def tarjetas():
                 btnsalir=Button(image=salir2,bg=fondo,activebackground=fondo,padx=75,borderwidth=0,highlightthickness=0,highlightcolor=fondo,command=lambda:(volverinicio()))
                 btnsalir.place(x=15,y=15)
             def volverinicio():
-                btn4.destroy(),btn3.destroy(),btn2.destroy(),l5.destroy(),l4.destroy(),btnsalir.destroy()
+                btn4.destroy(),btn3.destroy(),btn2.destroy(),l5.destroy(),l4.destroy(),btnsalir.destroy(),btnsalir.destroy()
                 main()
 
             principal()
