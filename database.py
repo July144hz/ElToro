@@ -152,8 +152,11 @@ def tarjetas():
                     if int(monto.get())<0:
                         messagebox.showerror(message="Ha ocurrido un error, intente ingresar otro valor.", title="BANCO BILBAO VIZCAYA")
                     else:
-                        saldo = saldo - int(monto.get())
-                        l7.configure(text=f"Saldo actual:{saldo}")
+                        if saldo - int(monto.get()) <0:
+                            messagebox.showerror(message="Ha ocurrido un error, intente ingresar otro valor.", title="BANCO BILBAO VIZCAYA")
+                        else:
+                            saldo = saldo - int(monto.get())
+                            l7.configure(text=f"Saldo actual:{saldo}")
                 except:
                     messagebox.showerror(message="Ha ocurrido un error, intente ingresar otro valor.", title="BANCO BILBAO VIZCAYA")
                 
