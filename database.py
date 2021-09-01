@@ -14,18 +14,13 @@ def tarjetas():
         database='python')
     fcursor = bd.cursor()
     def main():
-        global l1,l2,l3,e1,e2,btn1,fotoLogin,root,btnsalir
+        global l1,l2,l3,e1,e2,btn1,fotoLogin,root
         
         fondo='#71b4fd'
         root.config(bg=fondo)
         root.title("DataBase")
         root.geometry("500x500")
         root.resizable(False,False)
-        try:
-            btnsalir.destroy()
-        except:
-            btnsalir=Button()
-            btnsalir.destroy()
 
         logo = ImageTk.PhotoImage(Image.open('resources/bbv.png'))
         l1=Label(image=logo,bg=fondo)
@@ -93,14 +88,19 @@ def tarjetas():
 
             principal()
 
+            def volverprincipal():
+                global btn5,e3,btn7, l5, l8, btnsalir2
+                btn5.destroy(),e3.destroy(),btn7.destroy(),l5.destroy(),l8.destroy(),btnsalir2.destroy(),principal()
+
             def imonto():
-                global l8, btnsalir
+                global l8, btnsalir2,btn5,e3,btn7, l5, l8, btnsalir2
                 l5.config(text="Que cantidad desea ingresar?")
                 monto= StringVar()
+                btnsalir1.destroy()
                 e3=Entry(textvariable=monto,justify=CENTER,font=('calibri',20))
                 e3.bind('<Return>', lambda x:ingreso(monto))
                 e3.pack()
-                btnsalir2=Button(image=salir2,bg=fondo,activebackground=fondo,padx=75,borderwidth=0,highlightthickness=0,highlightcolor=fondo,command=lambda:(btn5.destroy(),e3.destroy(),btn7.destroy(),l5.destroy(),l8.destroy(),btnsalir2.destroy(),principal()))
+                btnsalir2=Button(image=salir2,bg=fondo,activebackground=fondo,padx=75,borderwidth=0,highlightthickness=0,highlightcolor=fondo,command=lambda:(volverprincipal()))
                 btnsalir2.place(x=15,y=15)
                 btn5=Button(text="INGRESAR",font=("bahnschrift",20),bg="#029D4D",activebackground="#029D4D",command=lambda:(l8.configure(text=f"Saldo actual:{saldo+20}"),ingreso(monto)))
                 btn5.pack()
