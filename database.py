@@ -104,7 +104,7 @@ def tarjetas():
                 btnsalir2.place(x=15,y=15)
                 btn5=Button(text="INGRESAR",font=("bahnschrift",20),bg="#029D4D",activebackground="#029D4D",command=lambda:(l8.configure(text=f"Saldo actual:{saldo+20}"),ingreso(monto)))
                 btn5.pack()
-                btn7 = Button(text="SALIR",font=("bahnschrift",20),bg="#E33F2C",activebackground="#E33F2C",command=lambda:(btn5.destroy(),e3.destroy(),btn7.destroy(),l5.destroy(),l8.destroy(),principal()))
+                btn7 = Button(text="SALIR",font=("bahnschrift",20),bg="#E33F2C",activebackground="#E33F2C",command=lambda:(volverprincipal()))
                 btn7.pack()
                 l8 = Label(text=f"Saldo actual:{saldo}",font=("consola",20),bg=fondo,activebackground=fondo)
                 l8.pack()
@@ -114,8 +114,11 @@ def tarjetas():
                 global saldo
                 fcursor.execute("UPDATE tarjetas SET saldo = (saldo+'"+monto.get()+"') WHERE usuario = '"+var1+"' and password = '"+var2+"'")
                 try:
-                    saldo= saldo + float(monto.get())
-                    l8.configure(text=f"Saldo actual:{saldo}")
+                    if int(monto.get())<0:
+                        messagebox.showerror(message="Ha ocurrido un error, intente ingresar otro valor.", title="BANCO BILBAO VIZCAYA")
+                    else:
+                        saldo= saldo + float(monto.get())
+                        l8.configure(text=f"Saldo actual:{saldo}")
                 except:
                     messagebox.showerror(message = "Ha ocurrido un error, intente ingresar otro valor.", title="BANCO BILBAO VIZCAYA")
                     l8.configure(text=f"Saldo actual:{saldo}")
@@ -136,7 +139,7 @@ def tarjetas():
                 e4.pack()
                 btn6 = Button(text="RETIRAR", font=("bahnschrift",20),bg="#029D4D",activebackground="#029D4D", command=lambda:(retiro(monto)))
                 btn6.pack()
-                btn8 = Button(text="SALIR",font=("bahnschrift",20),bg="#E33F2C",activebackground="#E33F2C", command=lambda : (l5.destroy(),e4.destroy(),btn8.destroy(),l7.destroy(),btn6.destroy(),principal()))
+                btn8 = Button(text="SALIR",font=("bahnschrift",20),bg="#E33F2C",activebackground="#E33F2C", command=lambda : (volverprincipal2()))
                 btn8.pack()
                 l7 = Label(text=f"Saldo actual:{saldo}", font=("consola",20),bg=fondo,activebackground=fondo)
                 l7.pack()
@@ -146,8 +149,11 @@ def tarjetas():
                 global saldo
                 fcursor.execute("UPDATE tarjetas SET saldo = (saldo-'"+monto.get()+"') WHERE usuario = '"+var1+"' and password = '"+var2+"'")
                 try:
-                    saldo = saldo - float(monto.get())
-                    l8.configure(text=f"Saldo actual:{saldo}")
+                    if int(monto.get())<0:
+                        messagebox.showerror(message="Ha ocurrido un error, intente ingresar otro valor.", title="BANCO BILBAO VIZCAYA")
+                    else:
+                        saldo = saldo - int(monto.get())
+                        l7.configure(text=f"Saldo actual:{saldo}")
                 except:
                     messagebox.showerror(message="Ha ocurrido un error, intente ingresar otro valor.", title="BANCO BILBAO VIZCAYA")
                 
