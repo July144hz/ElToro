@@ -120,9 +120,17 @@ def tarjetas():
                     messagebox.showerror(message = "Ha ocurrido un error, intente ingresar otro valor.", title="BANCO BILBAO VIZCAYA")
                     l8.configure(text=f"Saldo actual:{saldo}")
 
+            def volverprincipal2():
+                global e4,btn6,btn8,l7,btnsalir2
+                e4.destroy(),btn6.destroy(),btn8.destroy(),l7.destroy(),btnsalir2.destroy(),l5.destroy(),principal()
+
             def rmonto():
+                global e4,btn6,btn8,l7,btnsalir2
                 l5.config(text="Que cantidad desea retirar?")
                 monto = StringVar()
+                btnsalir1.destroy()
+                btnsalir2=Button(image=salir2,bg=fondo,activebackground=fondo,padx=75,borderwidth=0,highlightthickness=0,highlightcolor=fondo,command=lambda:(volverprincipal2()))
+                btnsalir2.place(x=15,y=15)
                 e4 = Entry(textvariable=monto, justify=CENTER, font=('calibri', 20))
                 e4.bind('<Return>', lambda x:retiro(monto))
                 e4.pack()
