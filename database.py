@@ -115,7 +115,7 @@ def tarjetas():
                 fcursor.execute("UPDATE tarjetas SET saldo = (saldo+'"+monto.get()+"') WHERE usuario = '"+var1+"' and password = '"+var2+"'")
                 try:
                     if int(monto.get())<0:
-                        messagebox.showerror(message="Ha ocurrido un error, intente ingresar otro valor.", title="BANCO BILBAO VIZCAYA")
+                        messagebox.showerror(message="No puedes ingresar valores negativos.", title="BANCO BILBAO VIZCAYA")
                     else:
                         saldo= saldo + float(monto.get())
                         l8.configure(text=f"Saldo actual:{saldo}")
@@ -150,10 +150,10 @@ def tarjetas():
                 fcursor.execute("UPDATE tarjetas SET saldo = (saldo-'"+monto.get()+"') WHERE usuario = '"+var1+"' and password = '"+var2+"'")
                 try:
                     if int(monto.get())<0:
-                        messagebox.showerror(message="Ha ocurrido un error, intente ingresar otro valor.", title="BANCO BILBAO VIZCAYA")
+                        messagebox.showerror(message="No puedes retirar valores negativos.", title="BANCO BILBAO VIZCAYA")
                     else:
                         if saldo - int(monto.get()) <0:
-                            messagebox.showerror(message="Ha ocurrido un error, intente ingresar otro valor.", title="BANCO BILBAO VIZCAYA")
+                            messagebox.showerror(message="No puedes retirar esa cantidad de dinero.", title="BANCO BILBAO VIZCAYA")
                         else:
                             saldo = saldo - int(monto.get())
                             l7.configure(text=f"Saldo actual:{saldo}")
